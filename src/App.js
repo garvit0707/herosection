@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import Login from "./pages/public/login/index";
+import Signup from "./pages/public/signup/index";
+import PrivatePage from "./pages/private/cart/index";
+import "./App.css";
 
 function App() {
+  // Assuming you have some mechanism to determine if the user is logged in
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        {/* Public routes */}
+        <Route
+          path="/login"
+          element={isLoggedIn ? <Navigate to="/private" /> : <Login />}
+        />
+        <Route
+          path="/signup"
+          element={isLoggedIn ? <Navigate to="/private" /> : <Signup />}
+        />
+        {/* Private route */}
+        <Route
+          path="/private"
+          element={isLoggedIn ? <PrivatePage /> : <Navigate to="/login" />}
+        />
+        {/* Default route */}
+        <Route
+          path="/"
+          element={isLoggedIn ? <Navigate to="/private" /> : <Login />}
+        />
+      </Routes>
+    </Router>
   );
 }
 
