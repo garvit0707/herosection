@@ -24,7 +24,7 @@ function Navbar() {
         </div>
 
         {/* Cart Icon */}
-        <div className="flex items-center">
+        <div className="flex items-center relative">
           <Link to="/cart" className="text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -40,6 +40,9 @@ function Navbar() {
                 d="M4 4h16a1 1 0 011 1v12a2 2 0 01-2 2H7a2 2 0 01-2-2V5a1 1 0 011-1zM8 20a2 2 0 100-4 2 2 0 000 4zM20 8H8"
               />
             </svg>
+            <span class="-top-3 left-6 z-10 absolute w-4 h-4  flex items-center justify-center p-3 bg-red-400 border-2 text-[10px] font-bold border-white text-white dark:border-gray-800 rounded-full">
+              12
+            </span>
           </Link>
         </div>
 
@@ -49,7 +52,6 @@ function Navbar() {
             src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
             alt=""
           />
-          <span class="top-0 left-7 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
         </div>
       </div>
     </nav>
