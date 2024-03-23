@@ -7,10 +7,9 @@ import {
 } from "react-router-dom";
 import Login from "./pages/public/login/index";
 import Signup from "./pages/public/signup/index";
-import PrivatePage from "./pages/private/cart/index";
 import "./App.css";
 import Home from "./pages/public/home";
-import Navbar from "./components/navbar";
+import Navbar from './components/navbar/index';
 
 function App() {
   // Assuming you have some mechanism to determine if the user is logged in
