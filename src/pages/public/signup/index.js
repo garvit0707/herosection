@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { validationSchemaSignUp } from "../../../utlis/validations";
 
 function Signup() {
   const initialValues = {
@@ -9,16 +9,6 @@ function Signup() {
     password: "",
     confirmPassword: "",
   };
-
-  const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Email is required"),
-    password: Yup.string()
-      .min(6, "Password must be at least 6 characters")
-      .required("Password is required"),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Passwords must match")
-      .required("Confirm Password is required"),
-  });
 
   const onSubmit = (values) => {
     // Handle form submission
@@ -35,7 +25,7 @@ function Signup() {
         </div>
         <Formik
           initialValues={initialValues}
-          validationSchema={validationSchema}
+          validationSchema={validationSchemaSignUp}
           onSubmit={onSubmit}
         >
           {({ errors, touched }) => (
