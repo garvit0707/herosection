@@ -9,32 +9,35 @@ import Login from "./pages/public/login/index";
 import Signup from "./pages/public/signup/index";
 import PrivatePage from "./pages/private/cart/index";
 import "./App.css";
+import Home from "./pages/public/home";
+import Navbar from "./components/navbar";
 
 function App() {
   // Assuming you have some mechanism to determine if the user is logged in
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <Router>
+      {isLoggedIn && <Navbar />}
       <Routes>
         {/* Public routes */}
         <Route
           path="/login"
-          element={isLoggedIn ? <Navigate to="/private" /> : <Login />}
+          element={isLoggedIn ? <Navigate to="/home" /> : <Login />}
         />
         <Route
           path="/signup"
-          element={isLoggedIn ? <Navigate to="/private" /> : <Signup />}
+          element={isLoggedIn ? <Navigate to="/home" /> : <Signup />}
         />
         {/* Private route */}
         <Route
-          path="/private"
-          element={isLoggedIn ? <PrivatePage /> : <Navigate to="/login" />}
+          path="/home"
+          element={isLoggedIn ? <Home /> : <Navigate to="/login" />}
         />
         {/* Default route */}
         <Route
           path="/"
-          element={isLoggedIn ? <Navigate to="/private" /> : <Login />}
+          element={isLoggedIn ? <Navigate to="/home" /> : <Login />}
         />
       </Routes>
     </Router>
